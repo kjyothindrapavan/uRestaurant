@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.virtualpairprogrammers.data.MenuDataService;
 import com.virtualpairprogrammers.domain.MenuItem;
@@ -33,6 +34,10 @@ public class OrderReceivedServlet extends HttpServlet {
 		}
 		
 		Double total = menuDataService.getOrderTotal();
-		response.sendRedirect("/thankYou.html?total="+total);
+		HttpSession session = request.getSession();
+		session.setAttribute("total", total);
+		String redirectUrl = "/thankYou.html";
+		redirectUrl = response.encodeURL(redirectUrl);
+		response.sendRedirect(redirectUrl);
 	}
 }
