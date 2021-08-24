@@ -33,15 +33,6 @@ public class OrderReceivedServlet extends HttpServlet {
 		}
 		
 		Double total = menuDataService.getOrderTotal();
-		
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/html");
-		out.println("<html><body><h1>Ricky's Restaurant</h1>");
-		out.println("<h2>Order your food</h2>");
-		
-		out.println("Thank you - your order has been received. You need to pay $" + total);
-				
-		out.println("</body></html>");
-		out.close();
+		response.sendRedirect("/thankYou.html?total="+total);
 	}
 }
