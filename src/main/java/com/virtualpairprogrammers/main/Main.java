@@ -23,7 +23,10 @@ public class Main {
         resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes",
                 additionWebInfClasses.getAbsolutePath(), "/"));
         ctx.setResources(resources);
-
+        
+        tomcat.addUser("pavan", "pass");
+        tomcat.addRole("pavan", "user");
+        
         tomcat.start();
         tomcat.getServer().await();
     }
